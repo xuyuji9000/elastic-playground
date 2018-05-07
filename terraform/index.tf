@@ -6,11 +6,11 @@ provider "aws" {
 
 resource "aws_instance" "example" {
     ami             = "${lookup(var.amis, var.region)}"
-    instance_type   = "t2.small"
+    instance_type   = "t2.medium"
 
     associate_public_ip_address = "true"
 
-    vpc_security_group_ids = ["${aws_security_group.ssh.id}"]
+    vpc_security_group_ids = ["${aws_security_group.elastic.id}"]
 
     key_name = "${aws_key_pair.key-demo.id}"
 
@@ -24,8 +24,8 @@ resource "aws_key_pair" "key-demo" {
     public_key = "${file(var.key_pair)}"
 }
 
-resource "aws_security_group" "ssh" {
-    name = "ssh"
+resource "aws_security_group" "elastic" {
+    name = "elastic"
 
     egress {
         from_port = 0
@@ -37,6 +37,21 @@ resource "aws_security_group" "ssh" {
     ingress {
         from_port = 22
         to_port = 22
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    ingress {
+        from_port = 22
+        to_port = 22
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    # kibaba port
+    ingress {
+        from_port = 5601
+        to_port = 5601
         protocol = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
     }
