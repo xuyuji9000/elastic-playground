@@ -1,0 +1,6 @@
+heartbeat.monitors:
+- type: icmp
+  schedule: '*/5 * * * * * *'
+  hosts: ["www.baidu.com"]
+
+setup.template.name: "heartbeat"
