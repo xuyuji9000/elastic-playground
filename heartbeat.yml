@@ -1,6 +1,6 @@
 heartbeat.monitors:
 - type: icmp
   schedule: '*/5 * * * * * *'
-  hosts: ["www.baidu.com"]
+  hosts: ["data.coderbunker.com"]
 
 setup.template.name: "heartbeat"
