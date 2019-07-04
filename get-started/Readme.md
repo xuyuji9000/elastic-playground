@@ -4,10 +4,12 @@
 
 ``` bash
 docker run --name elasticsearch \
---net full-text-search-playground \
+--rm \
 -p 9200:9200 \
 -p 9300:9300 \
--e "discovery.type=single-node" elasticsearch:5.6-alpine
+-v elasticsearch-data:/usr/share/elasticsearch/data \
+-e "discovery.type=single-node" \
+elasticsearch:5.6-alpine
 ```
 
 - Get cluster health: `curl -X GET localhost:9200/_cat/health?v`
