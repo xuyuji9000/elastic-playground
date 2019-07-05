@@ -24,3 +24,5 @@ type=rpm-md
 systemctl enable elasticsearch
 systemctl start elasticsearch
 ```
+
+- Default data location on centos: `/var/lib/elasticsearch`
