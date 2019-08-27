@@ -1,0 +1,36 @@
+- Access Elasticsearch 
+
+``` bash
+curl -XPOST \
+-u username:password 'http://<HOST>:9200/filebeat/my_type/'?pretty \
+-d '{"title": "One", "tags": ["ruby"]}'
+```
+
+
+- List nodes: 
+
+``` bash
+USERNAME=
+PASSWORD=
+HOST=
+curl -X GET -u ${USERNAME}:${PASSWORD} ${HOST}:9200/_cat/nodes?v
+```
+
+- Get version
+
+``` bash
+USERNAME=
+PASSWORD=
+HOST=
+curl -X GET -u ${USERNAME}:${PASSWORD} ${HOST}:9200
+```
+
+
+- Get indices
+
+``` bash
+USERNAME=
+PASSWORD=
+HOST=
+curl -X GET -u ${USERNAME}:${PASSWORD} ${HOST}:9200/_cat/indices?v
+```
