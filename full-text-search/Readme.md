@@ -1,3 +1,25 @@
+Elasticsearch version: **7.3.1**
+
+- Build docker image
+
+``` bash
+ELASTICSEARCH_VERSION=local
+docker build -t elasticsearch:${ELASTICSEARCH_VERSION} .
+```
+
+- Run container 
+
+``` bash
+ELASTICSEARCH_VERSION=local
+docker run -d --name elasticsearch \
+--net elastic \
+-p 9200:9200 \
+-p 9300:9300 \
+-e "discovery.type=single-node" elasticsearch:${ELASTICSEARCH_VERSION}
+
+```
+
+
 - Simple Search
 
 ``` bash
@@ -19,7 +41,7 @@ curl -X GET "localhost:9200/_search" -H 'Content-Type: application/json' -d'
 - Create mapping 
 
 ``` bash
-curl -X POST "localhost:9200/news/new/_mapping" -H 'Content-Type: application/json' -d '{
+curl -X POST "localhost:9200/news/new/_mapping?include_type_name=true" -H 'Content-Type: application/json' -d '{
     "new": 
     {
         "properties": 
